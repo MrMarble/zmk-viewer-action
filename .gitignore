@@ -1,5 +1,5 @@
 # symlink for `act`
-/golangci-lint-action
+/zmk-viewer-action
 
 __tests__/runner/*
 
