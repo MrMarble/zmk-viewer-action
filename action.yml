@@ -1,0 +1,10 @@
+name: 'ZMK Viewer'
+description: 'Generate keyboard layouts from ZMK .keymap file'
+author: 'MrMarble'
+inputs:
+  keyboard:
+    description: 'Name of the keyboard'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/run/index.js'
