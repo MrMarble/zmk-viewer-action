@@ -5,6 +5,8 @@
   "private": true,
   "main": "dist/main.js",
   "scripts": {
+    "prepare-setup-go": "cd node_modules/setup-go && npm run build",
+    "prepare-deps": "npm run prepare-setup-go",
     "build": "tsc && ncc build -o dist/run/ src/main.ts",
     "type-check": "tsc",
     "lint": "eslint --max-warnings 1 **/*.ts --cache",
@@ -12,7 +14,7 @@
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "local": "npm run build && act -j test -b",
-    "all": "npm run build && npm run format-check && npm run lint",
+    "all": "npm run prepare-deps && npm run build && npm run format-check && npm run lint",
     "prepare": "husky install"
   },
   "repository": {
@@ -28,11 +30,15 @@
   "homepage": "https://github.com/MrMarble/zmk-viewer-action#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "@actions/github": "^5.0.0"
+    "@actions/github": "^5.0.0",
+    "@actions/tool-cache": "^1.7.1",
+    "setup-go": "git+https://github.com/actions/setup-go.git#v2.1.5",
+    "tmp": "^0.2.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
+    "@types/tmp": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "@vercel/ncc": "^0.33.1",
